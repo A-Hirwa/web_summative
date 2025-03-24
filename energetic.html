@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="relax.css">
+    <link rel="stylesheet"href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+<body>
+    <div id="time">
+        <p>How much time can you spare?</p>
+        <i class="fa-regular fa-hourglass"></i>
+        <p><span id="time-val"> 10 </span> mins</p>
+        <input type="range" min="5" max="120" value="10" class="slider">
+        <a href="#interest"><button>Next</button></a> 
+    </div>
+    <div id="interest">
+        <p>Choose level of difficulty</p>
+        <div id="option-grp">
+            <button class="option" onclick="level(this)">Beginner</button>
+            <button class="option" onclick="level(this)">Intermediate</button>
+            <button class="option" onclick="level(this)">Expert</button>
+            <a href="#move"><button>Next</button></a>
+        </div>
+        <div id="move">
+            <p>What kind of exercise would you like?</p>
+            <div id="option-grp">
+                <button class="option" onclick="exercise(this)">Cardio</button>
+                <button class="option" onclick="unhide('target')">Strength</button>
+                <button class="option" onclick="exercise(this)">Stretching</button>
+            </div>
+        </div>
+        <div id="target">
+                <p>Which muscle/muscles are you targeting?</p>
+                <div id="muscles">
+                <button class="option" onclick="exercise(this)">Abdominals</button>
+                <button class="option" onclick="exercise(this)">Biceps</button>
+                <button class="option" onclick="exercise(this)">Calves</button>
+                <button class="option" onclick="exercise(this)">Chest</button>
+                <button class="option" onclick="exercise(this)">Glutes</button>
+                <button class="option" onclick="exercise(this)">Lats</button>
+                <button class="option" onclick="exercise(this)">All</button>
+            </div>
+        </div>
+        <a href="#period"><button onclick="fetchRoutine()">Done</button></a>
+    </div>
+    <div id="results"> 
+    </div>
+    <script src="script.js"></script>
+    <script>
+        let time = document.getElementsByClassName("slider")[0]
+        let val = document.getElementById("time-val")
+        time.addEventListener("input", function () {
+            val.textContent = this.value
+        })
+    </script>
+</body>
+</html>
