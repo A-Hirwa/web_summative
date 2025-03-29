@@ -1,5 +1,3 @@
-require('dotenv').config();
-const apiKey = process.env.apiKey;
 const API_URL = 'https://api.api-ninjas.com/v1/exercises'
 
 let difficulty = ""
@@ -407,8 +405,8 @@ function tooled(btn, id) {
   
     for (let offset = 0; offset <= 60; offset += 30) {
       try {
-        const url = `${API_URL}?type=${exercise_type}&difficulty=${difficulty}&offset=${offset}`
-        const res = await fetch(url, { headers: { 'X-Api-Key': apiKey } })
+        const url = `/api/exercises?type=${exercise_type}&difficulty=${difficulty}&offset=${offset}`
+        const res = await fetch(url)
         if (!res.ok) continue
   
         const data = await res.json()
