@@ -398,57 +398,60 @@ function tooled(btn, id) {
   }
   
   async function fetchAllExercises() {
-    const banned = ["swimming", "skating"]
-    const includeTrail = space === "outdoor"
-    const results = []
-    const seen = new Set()
+    const banned = ["swimming", "skating"];
+    const includeTrail = space === "outdoor";
+    const results = [];
+    const seen = new Set();
   
-    for (let offset = 0; offset <= 60; offset += 30) {
+    const offsets = [0, 30, 60]; // max 3 requests
+  
+    for (let offset of offsets) {
       try {
-        const url = `/api/exercises?type=${exercise_type}&difficulty=${difficulty}&offset=${offset}`
-        const res = await fetch(url)
-        if (!res.ok) continue
+        const url = `/api/exercises?type=${exercise_type}&difficulty=${difficulty}&offset=${offset}`;
+        const res = await fetch(url);
+        if (!res.ok) continue;
   
-        const data = await res.json()
-        if (!Array.isArray(data)) continue
+        const data = await res.json();
+        if (!Array.isArray(data)) continue;
   
         for (let ex of data) {
-          const name = ex.name.toLowerCase()
-          const eq = ex.equipment.toLowerCase()
-          const isBodyOnly = eq === "body_only" || eq === "none"
-          const isBanned = banned.some(b => name.includes(b))
-          const isTrail = name.includes("trail")
+          const name = ex.name.toLowerCase();
+          const eq = ex.equipment.toLowerCase();
+          const isBodyOnly = eq === "body_only" || eq === "none";
+          const isBanned = banned.some(b => name.includes(b));
+          const isTrail = name.includes("trail");
   
-          if (!includeTrail && (isTrail || isBanned)) continue
-          if (seen.has(name)) continue
+          if (!includeTrail && (isTrail || isBanned)) continue;
+          if (seen.has(name)) continue;
   
           if (exercise_type === "strength") {
             if (space === "gym") {
-              results.push(ex)
+              results.push(ex);
             } else if (equipment_choice === "gym package") {
-              if (!eq.includes("machine") && !eq.includes("other")) results.push(ex)
+              if (!eq.includes("machine") && !eq.includes("other")) results.push(ex);
             } else if (equipment.length === 0) {
-              if (isBodyOnly) results.push(ex)
+              if (isBodyOnly) results.push(ex);
             } else if (equipment.includes(eq)) {
-              results.push(ex)
+              results.push(ex);
             }
           } else {
             if (space === "gym" || space === "outdoor") {
-              results.push(ex)
+              results.push(ex);
             } else if (isBodyOnly) {
-              results.push(ex)
+              results.push(ex);
             }
           }
   
-          seen.add(name)
+          seen.add(name);
         }
       } catch (err) {
-        console.error(`Error during fetch at offset ${offset}:`, err)
+        console.error(`Error at offset ${offset}:`, err);
       }
     }
   
-    return results
+    return results;
   }
+  
   
   function shuffle(arr) {
     return arr.sort(() => Math.random() - 0.5)
