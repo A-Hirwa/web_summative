@@ -19,11 +19,11 @@
 ## File Structure
 ```
 TimeFit/
-├── index.html       # Landing and selection page
-├── results.html     # Workout display page
-├── script.js        # Main logic: fetching, filtering, rendering
-├── style.css        # Styling and animations
-└── README.md        # This file
+├── index.html      
+├── results.html     
+├── script.js        
+├── style.css        
+└── README.md       
 ```
 
 ## How It Works
