@@ -4,7 +4,7 @@
 
 ## Features
 
-- Choose your workout duration (from 5 to 120 minutes)
+- Choose your workout duration (from 5 to 60 minutes)
 - Select exercise type: strength, cardio, or stretching
 - Pick specific muscles to target (e.g., chest, glutes, biceps)
 - Choose equipment (or "don't care" to include everything except machines)

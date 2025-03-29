@@ -8,7 +8,7 @@ const PORT = process.env.PORT || 3000;
 const API_URL = "https://api.api-ninjas.com/v1/exercises";
 
 app.use(cors());
-app.use(express.static("public")); 
+app.use(express.static(".")); 
 
 app.get("/api/exercises", async (req, res) => {
   const { type, difficulty, offset } = req.query;
