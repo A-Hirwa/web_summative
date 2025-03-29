@@ -31,17 +31,17 @@
     </footer>
     <script>
       window.onload = function () {
-        const content = localStorage.getItem("generatedWorkout");
-        const target = document.getElementById("all");
+        const content = localStorage.getItem("generatedWorkout")
+        const target = document.getElementById("all")
     
         if (target) {
           if (content) {
-            target.innerHTML = content;
+            target.innerHTML = content
           } else {
-            target.innerHTML = "<p>No routine found. Please go back and try again.</p>";
+            target.innerHTML = "<p>No routine found. Please go back and try again.</p>"
           }
         } else {
-          console.error("Element with id='all' not found on results page.");
+          console.error("Element with id='all' not found on results page.")
         }
       };
     </script>    
