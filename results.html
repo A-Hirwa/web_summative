@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="results.css">
+  <link rel="stylesheet"href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <title>Workout Routine</title>
+</head>
+<body>
+    <nav>
+      <div class="logo">
+        <img src="images/image.png" width="100px" height="50px" alt="work out logo">
+        <p>Timefit</p>
+      </div>
+      <div id="navigation">
+          <a href="energetic.html"><p>Get Workout</p></a>
+          <a href="contact.css"><p>Contact us</p></a>
+      </div>
+    </nav>
+    <main>
+      <div id="adjust">
+        <div id="all"></div>
+        <div id="return">
+          <i class="fa-solid fa-arrow-left"></i> <span onclick="location.href='energetic.html'">Go back</span>
+        </div>
+    </div>
+    </main>
+    <footer>
+      <p>Copyright Ariane 2025</p>
+    </footer>
+    <script>
+      window.onload = function () {
+        const content = localStorage.getItem("generatedWorkout");
+        const target = document.getElementById("all");
+    
+        if (target) {
+          if (content) {
+            target.innerHTML = content;
+          } else {
+            target.innerHTML = "<p>No routine found. Please go back and try again.</p>";
+          }
+        } else {
+          console.error("Element with id='all' not found on results page.");
+        }
+      };
+    </script>    
+    <script src="script.js"></script>
+</body>
+</html>

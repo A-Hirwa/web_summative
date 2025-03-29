@@ -1,0 +1,12 @@
+.DS_Store
+Thumbs.db
+
+.vscode/
+
+*.log
+
+.env
+
+node_modules/
+
+dist/

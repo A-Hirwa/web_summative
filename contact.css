@@ -1,0 +1,71 @@
+#Contact{
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 10%;
+    padding: 30px 10%;
+    background-color: black;
+    color: white;
+    height: 100vh;
+}
+
+body{
+    margin: 0;
+}
+
+input{
+    width: 100%;
+    height: 30px;
+    border-radius: 10px;
+    border-style: none;
+}
+
+textarea{
+    height: 300px;
+    width: 100%;
+    border-radius: 10px;
+    border-style: none;
+}
+
+#socials{
+    flex: 1 1 auto;
+    margin: 50px auto;
+}
+
+form{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 7px;
+    flex: 1 1 auto;
+    margin: auto;
+}
+
+#Submit{
+    background-color: rgb(3, 3, 3);
+    color: #EAF9D9;
+    border: 2px #EAF9D9 solid;
+    width: 160px;
+    height: 30px;
+    border-radius: 20px;
+}
+
+#Submit:hover{
+    background-color: #EAF9D9;
+    color: rgb(13, 13, 14);
+}
+
+.accounts{
+    font-size: 50%;
+    color: gainsboro;
+    transition: 0.3s ease;
+}
+
+#socials p{
+    font-size: 20px;
+}
+
+.accounts:hover{
+    cursor: pointer;
+    color: grey;
+}

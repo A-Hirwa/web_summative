@@ -3,57 +3,104 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Questionaire</title>
     <link rel="stylesheet" href="relax.css">
     <link rel="stylesheet"href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 </head>
 <body>
-    <div id="time">
-        <p>How much time can you spare?</p>
-        <i class="fa-regular fa-hourglass"></i>
-        <p><span id="time-val"> 10 </span> mins</p>
-        <input type="range" min="5" max="120" value="10" class="slider">
-        <a href="#interest"><button>Next</button></a> 
-    </div>
-    <div id="interest">
-        <p>Choose level of difficulty</p>
-        <div id="option-grp">
-            <button class="option" onclick="level(this)">Beginner</button>
-            <button class="option" onclick="level(this)">Intermediate</button>
-            <button class="option" onclick="level(this)">Expert</button>
-            <a href="#move"><button>Next</button></a>
-        </div>
-        <div id="move">
-            <p>What kind of exercise would you like?</p>
-            <div id="option-grp">
-                <button class="option" onclick="exercise(this)">Cardio</button>
-                <button class="option" onclick="unhide('target')">Strength</button>
-                <button class="option" onclick="exercise(this)">Stretching</button>
+    <div id="all">
+        <div id="time">
+            <p>How much time can you spare?</p>
+            <div>
+                <p id="keeper">10</p>
+                <p>minutes</p>
             </div>
+            <input type="range" min="5" max="60" value="10" id="slider" oninput="get_time(this.value)">
+            <button onclick="location.href='#leveled'">Next</button>
+        </div>
+        <div id="leveled">
+            <p>Choose level of difficulty</p>
+            <div id="level-grp">
+                <button class="option" onclick="level(this, this.parentElement.id)">Beginner</button>
+                <button class="option" onclick="level(this, this.parentElement.id)">Intermediate</button>
+                <button class="option" onclick="level(this, this.parentElement.id)">Expert</button>
+            </div>
+                <button onclick="location.href='#space'">Next</button>
+        </div>
+        <div id="space">
+            <p>Where are you working out?</p>
+            <div id="space-grp">
+                <button class="option" onclick="unhide(this, this.parentElement.id)">Home</button>
+                <button class="option" onclick="unhide(this, this.parentElement.id)">Outdoor</button>
+                <button class="option" onclick="spaced(this, this.parentElement.id)">Gym</button>
+            </div>
+            <button id="next" onclick="location.href='#typed'">Next</button>
+            <button id="hidden" onclick="location.href='#equiped'">Next</button>
+        </div>
+        <div id="equiped">
+            <p>Equipment or none?</p>
+            <div id="equip-grp">
+                    <button class="option" onclick="unhide_tool(this, this.parentElement.id)">Equipment</button>
+                    <button class="option" onclick="equip(this, this.parentElement.id)">No equipment</button>
+                    <button class="option" onclick="equip(this, this.parentElement.id)">Gym package</button>
+            </div>
+            <button id="old" onclick="location.href='#typed'">Next</button>
+            <button id="new" onclick="location.href='#tools'">Next</button>
+        </div>
+        <div id="tools">
+            <p>Which kind of equipment?</p>
+            <div id="un-tool">
+                <button class="option" onclick="tooled(this, this.parentElement.id)">Dumbbell</button>
+                <button class="option" onclick="tooled(this, this.parentElement.id)">Barbell</button>
+                <button class="option" onclick="tooled(this, this.parentElement.id)">Curl bar</button>
+                <button class="option" onclick="tooled(this, this.parentElement.id)">None</button>
+                <button class="option" onclick="tooled(this, this.parentElement.id)">All</button>
+            </div>
+            <button onclick="location.href='#typed'">Next</button>
+        </div>
+        <div id="typed">
+            <p>What kind of exercise would you like?</p>
+            <div id="type-grp">
+                <button class="option" onclick="etype(this, this.parentElement.id)">Cardio</button>
+                <button class="option" onclick="targeted(this, this.parentElement.id)">Strength</button>
+                <button class="option" onclick="etype(this, this.parentElement.id)">Stretching</button>
+            </div>
+            <div class="return" id="tohide">
+                <button onclick="getRoutine()">Done</button>
+                <span onclick="location.href='index.html'"><i class="fa-solid fa-arrow-left"></i> Go back</span>
+            </div>
+            <button id="hide" onclick="location.href='#target'">Next</button>
         </div>
         <div id="target">
-                <p>Which muscle/muscles are you targeting?</p>
-                <div id="muscles">
-                <button class="option" onclick="exercise(this)">Abdominals</button>
-                <button class="option" onclick="exercise(this)">Biceps</button>
-                <button class="option" onclick="exercise(this)">Calves</button>
-                <button class="option" onclick="exercise(this)">Chest</button>
-                <button class="option" onclick="exercise(this)">Glutes</button>
-                <button class="option" onclick="exercise(this)">Lats</button>
-                <button class="option" onclick="exercise(this)">All</button>
+            <p>Which muscle/muscles are you targeting?</p>
+            <div id="muscles">
+                <button class="option" onclick="muscle(this)">Abdominals</button>
+                <button class="option" onclick="muscle(this)">Biceps</button>
+                <button class="option" onclick="muscle(this)">Calves</button>
+                <button class="option" onclick="muscle(this)">Chest</button>
+                <button class="option" onclick="muscle(this)">Glutes</button>
+                <button class="option" onclick="muscle(this)">Lats</button>
+                <button class="option" onclick="muscle(this, this.parentElement.id)">All</button>
             </div>
+            <button onclick="getRoutine()">Done</button>
         </div>
-        <a href="#period"><button onclick="fetchRoutine()">Done</button></a>
     </div>
-    <div id="results"> 
+    <div id="load">
+        <div id="runner"><i class="fa-solid fa-person-running"></i></div>
+        <p>Getting your workout<span class="dots"></span></p>
     </div>
     <script src="script.js"></script>
     <script>
-        let time = document.getElementsByClassName("slider")[0]
-        let val = document.getElementById("time-val")
-        time.addEventListener("input", function () {
-            val.textContent = this.value
-        })
+        window.onload = function () {
+        const slider = document.getElementById("slider"); // your slider's ID
+        const display = document.getElementById("keeper"); // the place that shows the value
+    
+        if (slider && display) {
+        slider.value = 10;
+        display.textContent = 10;
+        duration = 10; // reset global if you’re using one
+        }
+    };
     </script>
 </body>
 </html>
